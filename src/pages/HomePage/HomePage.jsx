@@ -1,7 +1,10 @@
+import Header from '../../components/Header/Header';
+import AboutProducts from '../../components/AboutProducts/AboutProducts';
 const HomePage = () => {
 	return (
 		<div className='home-page'>
-			<h1>elo</h1>
+			<Header />
+			<AboutProducts />
 		</div>
 	);
 };

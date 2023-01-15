@@ -1,8 +1,8 @@
 import './Navbar.scss';
 const Navbar = () => {
 	return (
-		<nav>
-			<div className='wrapper'>Navbar</div>
+		<nav className='navbar'>
+			<div className='wrapper'></div>
 		</nav>
 	);
 };
