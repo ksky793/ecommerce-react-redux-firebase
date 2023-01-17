@@ -1,0 +1,27 @@
+@media (min-width: 992px) {
+	.section-about-products {
+		.about-products-container {
+			flex-direction: row-reverse;
+			justify-content: space-between;
+			align-items: center;
+			height: 500px;
+
+			.about-products-infos {
+				text-align: left;
+				.about-products-main-text {
+					font-weight: 500;
+					font-size: 4rem;
+				}
+				.about-products-paragraph {
+					font-size: 1.8rem;
+				}
+				.about-products-buttons {
+					.btn-view-items,
+					.btn-read-more {
+						margin: 30px 20px 0 0;
+					}
+				}
+			}
+		}
+	}
+}

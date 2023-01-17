@@ -3,6 +3,7 @@
 $header-btn-bg: #1067a3;
 $header-btn-text-color: #fff;
 $header-font-weight-main: 500;
+$header-span-text: #1780cf;
 $header-font-weight-paragraph: 200;
 $header-font-size-main: 2.5rem;
 $header-line-height-main: 5rem;
@@ -27,7 +28,7 @@ $header-line-height-paragraph: 3rem;
 				color: $text-main;
 
 				span {
-					color: $text-main;
+					color: $header-span-text;
 				}
 			}
 
