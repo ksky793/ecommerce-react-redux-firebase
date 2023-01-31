@@ -1,0 +1,11 @@
+@media (min-width: 992px) {
+	.footer {
+		.footer-container {
+			.footer-top {
+				flex-direction: row;
+				justify-content: space-between;
+				text-align: left;
+			}
+		}
+	}
+}
