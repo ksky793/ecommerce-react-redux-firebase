@@ -1,8 +1,11 @@
+import reportWebVitals from './reportWebVitals';
+import App from './App';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import reportWebVitals from './reportWebVitals';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { BrowserRouter as Router } from 'react-router-dom';
-import App from './App';
+library.add(faSpinner);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
