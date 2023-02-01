@@ -1,0 +1,22 @@
+@import '../../../variables.scss';
+.form-group {
+	margin-bottom: 20px;
+	label {
+		color: $text-main;
+		font-weight: 400;
+		display: block;
+		margin-bottom: 10px;
+	}
+	input {
+		width: 100%;
+		padding: 12px 20px;
+		margin: 8px 0;
+		box-sizing: border-box;
+		border: 1px solid #ccc;
+		&:focus {
+			border-color: $primary-color;
+			outline: none;
+		}
+	}
+	
+}
