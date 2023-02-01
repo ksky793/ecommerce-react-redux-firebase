@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import './default.scss';
-import bucket from './assets/svgs/bucket.svg';
+// import bucket from './assets/svgs/bucket.svg';
 
 // components
 import Header from './components/Header/Header';
@@ -9,21 +9,31 @@ import Layout from './layouts/Layout';
 import Navbar from './components/Navbar/Navbar';
 
 // pages
-import HomePage from './pages/HomePage/HomePage';
-import RegisterPage from './pages/RegisterPage/RegisterPage';
-import LoginPage from './pages/LoginPage/LoginPage';
-import ProductPage from './pages/ProductPage/ProductPage';
-
+import HomePage from './pages/home/HomePage';
+import RegisterPage from './pages/auth/RegisterPage';
+import LoginPage from './pages/auth/LoginPage';
+import ProductPage from './pages/product/ProductPage';
+import { useEffect, useState } from 'react';
+import { auth } from './firebase/utils';
 function App() {
+	const [user, setUser] = useState(null);
+
+	useEffect(() => {
+		auth.onAuthStateChanged((usr) => {
+			if (usr) setUser(usr.email);
+			else setUser(null);
+		});
+	}, []);
+
 	const header = <Header />;
-	const navbar = <Navbar />;
+	const navbar = <Navbar user={user} />;
 	const footer = <Footer />;
 	const content = (
 		<>
 			<Routes>
-				<Route path='/' element={<HomePage />} />
+				<Route path='/' element={<HomePage user={user} />} />
 				<Route path='/registration' element={<RegisterPage />} />
-				<Route path='/login' element={<LoginPage />} />
+				<Route path='/login' element={<LoginPage user={user} />} />
 				<Route
 					path='/products/:productId/product-details'
 					element={<ProductPage />}
