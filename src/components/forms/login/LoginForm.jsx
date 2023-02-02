@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import './LoginForm.scss';
+// import './LoginForm.scss';
+import '../Forms.scss';
 import googleLogo from '../../../assets/svgs/googleLogo.svg';
 import SpinningLoadingButton from '../../ui/LoadingButton/SpinningLoadingButton';
 import {
@@ -8,11 +9,11 @@ import {
 	logInWithEmailAndPassword,
 } from '../../../firebase/utils';
 
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Input from '../input/Input';
 import { isFormValid, validate } from '../../../helpers/validation';
 import AccountQuestion from '../accountQuestion/AccountQuestion';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+
 const LoginForm = (props) => {
 	const navigate = useNavigate();
 
@@ -77,9 +78,9 @@ const LoginForm = (props) => {
 	if (props.user) navigate('/');
 	return (
 		<div className='form-container wrapper'>
-			<h1 className='form-header'>Hello, Welcome Back!</h1>
+			<h1 className='form-header'>Sign In</h1>
 			{!error.valid && <p className='invalid-feedback'>{error.message}</p>}
-			<form className='login-form' onSubmit={handleSubmit}>
+			<form className='form' onSubmit={handleSubmit}>
 				<Input
 					type='email'
 					label='Email'

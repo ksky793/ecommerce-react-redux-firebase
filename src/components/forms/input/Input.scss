@@ -13,10 +13,10 @@
 		margin: 8px 0;
 		box-sizing: border-box;
 		border: 1px solid #ccc;
+		border-radius: 0;
 		&:focus {
 			border-color: $primary-color;
 			outline: none;
 		}
 	}
-	
 }

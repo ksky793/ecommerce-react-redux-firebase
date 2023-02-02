@@ -74,3 +74,25 @@ export const logout = async () => {
 };
 
 // rejestracja za pomocą emaila i hasła
+export const registerWithEmailAndPassword = async (
+	fullName,
+	email,
+	password
+) => {
+	return new Promise((resolve, reject) => {
+		createUserWithEmailAndPassword(auth, email, password)
+			.then((data) => {
+				const user = data.user;
+				addDoc(collection(db, 'users'), {
+					uid: user.uid,
+					name: fullName,
+					authProvider: 'local',
+					email: email,
+				});
+				resolve(data);
+			})
+			.catch((err) => {
+				reject(err);
+			});
+	});
+};

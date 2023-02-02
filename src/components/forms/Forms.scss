@@ -1,0 +1,46 @@
+@import '../../variables.scss';
+.form-container {
+	max-width: 400px;
+	margin: 0 auto;
+
+	.form-text {
+		font-size: 1.5rem;
+		margin: 1rem 0;
+		color: rgb(39, 52, 81);
+	}
+	.form-header {
+		text-align: center;
+		margin-bottom: 4rem;
+		color: $text-main;
+	}
+	.form {
+		.login-forgot-password-text {
+			font-size: 1.3rem;
+			color: $text-paragraph;
+			text-align: right;
+		}
+		.submit-button {
+			background-color: $primary-color;
+			color: white;
+			padding: 14px 20px;
+			margin: 8px 0;
+			border: none;
+			cursor: pointer;
+			width: 100%;
+			&:hover {
+				background-color: darken($primary-color, 10%);
+			}
+		}
+	}
+	.sign-in-providers {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+
+		.google-logo {
+			width: 25px;
+			margin: 0.5rem 0;
+			cursor: pointer;
+		}
+	}
+}
