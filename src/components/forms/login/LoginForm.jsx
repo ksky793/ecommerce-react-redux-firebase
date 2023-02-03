@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
-// import './LoginForm.scss';
 import '../Forms.scss';
 import googleLogo from '../../../assets/svgs/googleLogo.svg';
 import SpinningLoadingButton from '../../ui/LoadingButton/SpinningLoadingButton';
 import {
 	signInWithGoogle,
-	sendPasswordReset,
 	logInWithEmailAndPassword,
 } from '../../../firebase/utils';
-
+import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import Input from '../input/Input';
 import { isFormValid, validate } from '../../../helpers/validation';
@@ -70,7 +68,10 @@ const LoginForm = (props) => {
 				setLoading(false);
 			}
 		} else {
-			setError({ message: 'Wypełnij wszystkie pola poprawnie', valid: false });
+			setError({
+				message: 'Please, fill in all fields correctly',
+				valid: false,
+			});
 			setLoading(false);
 		}
 	};
@@ -99,14 +100,17 @@ const LoginForm = (props) => {
 				/>
 				<SpinningLoadingButton loading={loading}>LOGIN</SpinningLoadingButton>
 			</form>
-			<p
+			{/* <p
 				className='form-text'
 				onClick={() => {
 					sendPasswordReset(form.email.value);
 				}}
 			>
 				Forgot a password?
-			</p>
+			</p> */}
+			<Link to='/password-reset' className='form-text'>
+				Forgot a password?
+			</Link>
 			<div className='sign-in-providers'>
 				<p className='form-text'>Or Login With</p>
 				<img

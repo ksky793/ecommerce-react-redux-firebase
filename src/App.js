@@ -15,6 +15,7 @@ import LoginPage from './pages/auth/LoginPage';
 import ProductPage from './pages/product/ProductPage';
 import { useEffect, useState } from 'react';
 import { auth } from './firebase/utils';
+import ResetPasswordPage from './pages/auth/ResetPasswordPage';
 function App() {
 	const [user, setUser] = useState(null);
 
@@ -38,6 +39,7 @@ function App() {
 					path='/products/:productId/product-details'
 					element={<ProductPage />}
 				/>
+				<Route path='/password-reset' element={<ResetPasswordPage />} />
 			</Routes>
 		</>
 	);

@@ -83,7 +83,10 @@ const RegisterPage = () => {
 				setLoading(false);
 			}
 		} else {
-			setError({ message: 'Wypełnij wszystkie pola poprawnie', valid: false });
+			setError({
+				message: 'Please, fill in all fields correctly',
+				valid: false,
+			});
 			setLoading(false);
 		}
 	};

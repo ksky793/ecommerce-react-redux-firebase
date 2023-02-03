@@ -1,4 +1,4 @@
-const validateEmail = (input) => {
+export const validateEmail = (input) => {
 	const validRegex =
 		/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 	return validRegex.test(input);
@@ -6,13 +6,13 @@ const validateEmail = (input) => {
 
 const availableRules = {
 	required(value) {
-		return value ? '' : 'Pole wymagane';
+		return value ? '' : 'Required field';
 	},
 	min(value, rule) {
-		return value.length >= rule.length ? '' : `Min. ${rule.length} znaki`;
+		return value.length >= rule.length ? '' : `Min. ${rule.length} characters`;
 	},
 	email(value) {
-		return validateEmail(value) ? '' : 'Email niepoprawny';
+		return validateEmail(value) ? '' : 'Invalid email';
 	},
 };
 export const isFormValid = (form) => {

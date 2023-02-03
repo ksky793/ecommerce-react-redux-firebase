@@ -59,14 +59,21 @@ export function logInWithEmailAndPassword(email, password) {
 }
 
 // resetowanie hasła
-export const sendPasswordReset = async (email) => {
-	try {
-		await sendPasswordResetEmail(auth, email);
-		alert('Password reset link sent!');
-	} catch (err) {
-		console.error(err);
-		alert(err.message);
-	}
+// export const sendPasswordReset = async (email) => {
+// 	try {
+// 		await sendPasswordResetEmail(auth, email);
+// 	} catch (err) {}
+// };
+
+export const sendPasswordReset = (email) => {
+	return new Promise((resolve, reject) => {
+		const data = sendPasswordResetEmail(auth, email);
+		if (data) {
+			resolve(data);
+		} else {
+			reject();
+		}
+	});
 };
 
 export const logout = async () => {
