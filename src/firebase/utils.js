@@ -26,44 +26,68 @@ export default app;
 
 // logowanie z google
 const googleProvider = new GoogleAuthProvider();
-export const signInWithGoogle = async () => {
-	try {
-		const res = await signInWithPopup(auth, googleProvider);
-		const user = res.user;
+// export const signInWithGoogle = () => {
+// 	try {
+// 		const res = await signInWithPopup(auth, googleProvider);
+// 		const user = res.user;
+// 		console.log(user);
+// 		const q = query(collection(db, 'users'), where('uid', '==', user.uid));
+// 		const docs = await getDocs(q);
+// 		if (docs.docs.length === 0) {
+// 			await addDoc(collection(db, 'users'), {
+// 				uid: user.uid,
+// 				name: user.displayName,
+// 				authProvider: 'google',
+// 				email: user.email,
+// 			});
+// 		}
+// 		return user;
+// 	} catch (err) {
+// 		console.error(err);
+// 	}
+// 	return new Promise(async (resolve, reject) => {
+// 		signInWithPopup(auth, googleProvider).then((data) => {
+// 			const user = data.user;
+// 			const q = query(collection(db, 'users'), where('uid', '==', user.uid));
+// 		});
+// 	});
+// };
 
-		const q = query(collection(db, 'users'), where('uid', '==', user.uid));
-		const docs = await getDocs(q);
-		if (docs.docs.length === 0) {
-			await addDoc(collection(db, 'users'), {
-				uid: user.uid,
-				name: user.displayName,
-				authProvider: 'google',
-				email: user.email,
-			});
+export const signInWithGoogle = () => {
+	return new Promise(async (resolve, reject) => {
+		try {
+			const res = await signInWithPopup(auth, googleProvider);
+			const user = res.user;
+
+			console.log(user);
+			const q = query(collection(db, 'users'), where('uid', '==', user.uid));
+			const docs = await getDocs(q);
+			if (docs.docs.length === 0) {
+				await addDoc(collection(db, 'users'), {
+					uid: user.uid,
+					name: user.displayName,
+					authProvider: 'google',
+					email: user.email,
+				});
+			}
+			resolve(user);
+		} catch (err) {
+			reject(err.message);
 		}
-	} catch (err) {
-		console.error(err);
-	}
+	});
 };
-
 // logowanie za pomoca maila i hasła
 export function logInWithEmailAndPassword(email, password) {
 	return new Promise((resolve, reject) => {
-		const data = signInWithEmailAndPassword(auth, email, password);
-		if (data) {
-			resolve(data);
-		} else {
-			reject();
-		}
+		signInWithEmailAndPassword(auth, email, password)
+			.then((data) => {
+				resolve(data);
+			})
+			.catch((err) => {
+				reject(err.message);
+			});
 	});
 }
-
-// resetowanie hasła
-// export const sendPasswordReset = async (email) => {
-// 	try {
-// 		await sendPasswordResetEmail(auth, email);
-// 	} catch (err) {}
-// };
 
 export const sendPasswordReset = (email) => {
 	return new Promise((resolve, reject) => {
@@ -96,10 +120,11 @@ export const registerWithEmailAndPassword = async (
 					authProvider: 'local',
 					email: email,
 				});
+				console.log(data);
 				resolve(data);
 			})
 			.catch((err) => {
-				reject(err);
+				reject(err.message);
 			});
 	});
 };

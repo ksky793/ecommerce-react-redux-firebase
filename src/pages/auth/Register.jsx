@@ -1,20 +1,19 @@
+import { useState } from 'react';
+import { validate, isFormValid } from '../../helpers/validation';
+import { useNavigate, Navigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { signUpUser } from '../../redux/features/auth/authSlice';
+
+// components
 import Input from '../../components/forms/input/Input';
 import SpinningLoadingButton from '../../components/ui/LoadingButton/SpinningLoadingButton';
-import { useState } from 'react';
-import { validate } from '../../helpers/validation';
 import AccountQuestion from '../../components/forms/accountQuestion/AccountQuestion';
-import { isFormValid } from '../../helpers/validation';
-import { registerWithEmailAndPassword } from '../../firebase/utils';
-import { useNavigate } from 'react-router-dom';
+
 const RegisterPage = () => {
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
+	const { loading, error, isLoggedIn } = useSelector((state) => state.auth);
 
-	const [loading, setLoading] = useState(false);
-
-	const [error, setError] = useState({
-		valid: null,
-		message: '',
-	});
 	const [form, setForm] = useState({
 		firstName: {
 			value: '',
@@ -62,38 +61,26 @@ const RegisterPage = () => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		setLoading(true);
 		const isValid = isFormValid(form);
-
 		if (isValid) {
-			try {
-				const fullName = `${form.firstName.value} ${form.lastName.value}`;
-				await registerWithEmailAndPassword(
-					fullName,
-					form.email.value,
-					form.password.value
-				);
-				navigate('/');
-			} catch (err) {
-				console.log(err.message);
-				setError({
-					valid: false,
-					message: err.message,
-				});
-				setLoading(false);
-			}
-		} else {
-			setError({
-				message: 'Please, fill in all fields correctly',
-				valid: false,
-			});
-			setLoading(false);
+			const fullName = `${form.firstName.value} ${form.lastName.value}`;
+
+			await dispatch(
+				signUpUser({
+					fullName: fullName,
+					email: form.email.value,
+					password: form.password.value,
+				})
+			);
+			if (error === false) navigate('/login');
 		}
 	};
+
+	if (isLoggedIn) return <Navigate to='/' />;
 	return (
 		<div className='form-container wrapper'>
 			<h1 className='form-header'>Sign Up</h1>
-			{!error.valid && <p className='invalid-feedback'>{error.message}</p>}
+			{error && <p className='invalid-feedback'>{error}</p>}
 			<form onSubmit={handleSubmit} className='form'>
 				<Input
 					type='text'

@@ -1,25 +1,28 @@
-import React, { useState } from 'react';
-import '../Forms.scss';
-import googleLogo from '../../../assets/svgs/googleLogo.svg';
-import SpinningLoadingButton from '../../ui/LoadingButton/SpinningLoadingButton';
-import {
-	signInWithGoogle,
-	logInWithEmailAndPassword,
-} from '../../../firebase/utils';
+import { useState } from 'react';
+import { signInWithGoogle } from '../../../firebase/utils';
 import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
-import Input from '../input/Input';
+import { Navigate } from 'react-router-dom';
 import { isFormValid, validate } from '../../../helpers/validation';
+import {
+	signInUser,
+	signInGoogleUser,
+} from '../../../redux/features/auth/authSlice';
+import { useDispatch, useSelector } from 'react-redux';
+// styles
+import '../Forms.scss';
+// assets
+import googleLogo from '../../../assets/svgs/googleLogo.svg';
+// components
+import SpinningLoadingButton from '../../ui/LoadingButton/SpinningLoadingButton';
+import Input from '../input/Input';
 import AccountQuestion from '../accountQuestion/AccountQuestion';
 
-const LoginForm = (props) => {
-	const navigate = useNavigate();
+const LoginForm = () => {
+	const dispatch = useDispatch();
 
-	const [loading, setLoading] = useState(false);
-	const [error, setError] = useState({
-		valid: null,
-		message: '',
-	});
+	const { error, loading, isLoggedIn } = useSelector((state) => state.auth);
+	const [isValidForm, setIsValidForm] = useState(null);
+
 	const [form, setForm] = useState({
 		email: {
 			value: '',
@@ -51,36 +54,30 @@ const LoginForm = (props) => {
 		});
 	};
 
+	const handleSignInGoogle = () => {
+		dispatch(signInGoogleUser({}));
+	};
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		setLoading(true);
 		const isValid = isFormValid(form);
 		if (isValid) {
-			try {
-				await logInWithEmailAndPassword(form.email.value, form.password.value);
-				navigate('/');
-			} catch (err) {
-				console.log(err.message);
-				setError({
-					valid: false,
-					message: err.message,
-				});
-				setLoading(false);
-			}
+			await dispatch(
+				signInUser({ email: form.email.value, password: form.password.value })
+			);
 		} else {
-			setError({
-				message: 'Please, fill in all fields correctly',
-				valid: false,
-			});
-			setLoading(false);
+			setIsValidForm(false);
 		}
 	};
 
-	if (props.user) navigate('/');
+	if (isLoggedIn) return <Navigate to='/' />;
+
 	return (
 		<div className='form-container wrapper'>
 			<h1 className='form-header'>Sign In</h1>
-			{!error.valid && <p className='invalid-feedback'>{error.message}</p>}
+			{error && <p className='invalid-feedback'>{error}</p>}
+			{isValidForm === false && (
+				<p className='invalid-feedback'>Fill in all fields correctly</p>
+			)}
 			<form className='form' onSubmit={handleSubmit}>
 				<Input
 					type='email'
@@ -100,14 +97,6 @@ const LoginForm = (props) => {
 				/>
 				<SpinningLoadingButton loading={loading}>LOGIN</SpinningLoadingButton>
 			</form>
-			{/* <p
-				className='form-text'
-				onClick={() => {
-					sendPasswordReset(form.email.value);
-				}}
-			>
-				Forgot a password?
-			</p> */}
 			<Link to='/password-reset' className='form-text'>
 				Forgot a password?
 			</Link>
@@ -117,7 +106,7 @@ const LoginForm = (props) => {
 					className='google-logo'
 					src={googleLogo}
 					alt='Google Logo'
-					onClick={signInWithGoogle}
+					onClick={handleSignInGoogle}
 				/>
 			</div>
 			<AccountQuestion question={`Need an account?`} path='/registration'>

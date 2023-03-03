@@ -1,6 +1,8 @@
 import reportWebVitals from './reportWebVitals';
 import App from './App';
 import React from 'react';
+import { Provider } from 'react-redux';
+import store from './redux/store';
 import ReactDOM from 'react-dom/client';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
@@ -10,9 +12,11 @@ library.add(faSpinner);
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 	<React.StrictMode>
-		<Router>
-			<App />
-		</Router>
+		<Provider store={store}>
+			<Router>
+				<App />
+			</Router>
+		</Provider>
 	</React.StrictMode>
 );
 
