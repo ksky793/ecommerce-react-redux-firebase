@@ -1,5 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import {
+	getDocs,
+	query,
+	collection,
+	where,
+} from 'firebase/firestore';
+
+import { db } from '../../../firebase/utils';
 
 import {
 	logInWithEmailAndPassword,
@@ -20,10 +28,15 @@ export const signInUser = createAsyncThunk(
 		try {
 			const { user } = await logInWithEmailAndPassword(email, password);
 
+			// const userDoc = await getDoc(doc(db, 'users', user.uid));
+			const q = query(collection(db, 'users'), where('uid', '==', user.uid));
+			const docs = await getDocs(q);
+
 			const userData = {
 				email: user.email,
 				id: user.uid,
-				name: user.displayName || '',
+				name: docs.docs[0].get('name') || '',
+				role: docs.docs[0].get('role'),
 			};
 			localStorage.setItem('user', JSON.stringify(userData));
 			return userData;
@@ -95,8 +108,9 @@ const authSlice = createSlice({
 			state.loading = true;
 			state.error = null;
 		});
-		builder.addCase(signUpUser.fulfilled, (state) => {
+		builder.addCase(signUpUser.fulfilled, (state, action) => {
 			state.loading = false;
+			state.error = false;
 		});
 		builder.addCase(signUpUser.rejected, (state, action) => {
 			state.error = action.payload;
@@ -129,6 +143,7 @@ export const { LOGOUT_USER } = authSlice.actions;
 export const selectIsLoggedIn = (state) => state.auth.isLoggedIn;
 export const selectError = (state) => state.auth.error;
 export const selectLoading = (state) => state.auth.loading;
+export const selectUserInfo = (state) => state.auth.userInfo;
 
 // export const selectUserInfo = (state) => state.auth.userInfo;
 

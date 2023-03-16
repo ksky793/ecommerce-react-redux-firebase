@@ -26,33 +26,6 @@ export default app;
 
 // logowanie z google
 const googleProvider = new GoogleAuthProvider();
-// export const signInWithGoogle = () => {
-// 	try {
-// 		const res = await signInWithPopup(auth, googleProvider);
-// 		const user = res.user;
-// 		console.log(user);
-// 		const q = query(collection(db, 'users'), where('uid', '==', user.uid));
-// 		const docs = await getDocs(q);
-// 		if (docs.docs.length === 0) {
-// 			await addDoc(collection(db, 'users'), {
-// 				uid: user.uid,
-// 				name: user.displayName,
-// 				authProvider: 'google',
-// 				email: user.email,
-// 			});
-// 		}
-// 		return user;
-// 	} catch (err) {
-// 		console.error(err);
-// 	}
-// 	return new Promise(async (resolve, reject) => {
-// 		signInWithPopup(auth, googleProvider).then((data) => {
-// 			const user = data.user;
-// 			const q = query(collection(db, 'users'), where('uid', '==', user.uid));
-// 		});
-// 	});
-// };
-
 export const signInWithGoogle = () => {
 	return new Promise(async (resolve, reject) => {
 		try {
@@ -119,8 +92,8 @@ export const registerWithEmailAndPassword = async (
 					name: fullName,
 					authProvider: 'local',
 					email: email,
+					role: 'user',
 				});
-				console.log(data);
 				resolve(data);
 			})
 			.catch((err) => {
