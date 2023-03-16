@@ -1,5 +1,39 @@
 import './Input.scss';
 
+const InputFile = (props) => {
+	return (
+		<div className='form-group'>
+			<label>{props.label}</label>
+			<input
+				className={`form-control ${props.showError && 'is-invalid'}`}
+				type={props.type}
+				id={props.name}
+				ref={props.reference}
+				onChange={props.onChange}
+			/>
+			<div className='invalid-feedback'>{props.error}</div>
+		</div>
+	);
+};
+const InputSelect = (props) => {
+	return (
+		<div className='form-group'>
+			<label>{props.label}</label>
+			<select
+				className={`form-select ${props.showError && 'is-invalid'}`}
+				value={props.name}
+				onChange={props.onChange}
+			>
+				{props.options.map((option) => (
+					<option value={option.value} key={option.value}>
+						{option.label}
+					</option>
+				))}
+			</select>
+			<div className='invalid-feedback'>{props.error}</div>
+		</div>
+	);
+};
 const InputTextArea = (props) => {
 	return (
 		<div className='form-group'>
@@ -36,9 +70,11 @@ const Input = (props) => {
 			return <InputTextArea {...props} />;
 		case 'text':
 			return <InputText {...props} />;
-		case 'password':
-			return <InputText {...props} />;
-		case 'email':
+		case 'file':
+			return <InputFile {...props} />;
+		case 'select':
+			return <InputSelect {...props} />;
+		default:
 			return <InputText {...props} />;
 	}
 };
