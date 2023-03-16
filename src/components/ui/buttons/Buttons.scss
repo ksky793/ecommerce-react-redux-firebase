@@ -1,0 +1,48 @@
+$adminBtnBackground: #144f7b;
+
+// add to cart button styles
+$addToCartBackgroundColor: #ffffff;
+$addToCartTextColor: #1067a3;
+$addToCartBorder: 2px solid #1067a3;
+
+$buyBackground: #1067a3;
+.btn {
+	width: 100%;
+	border: none;
+	padding: 10px;
+	cursor: pointer;
+	color: white;
+	background-color: #1067a3;
+	&--admin,
+	&--submit {
+		background-color: $adminBtnBackground;
+	}
+	&--add-to-cart {
+		background-color: $addToCartBackgroundColor;
+		color: $addToCartTextColor;
+		border: $addToCartBorder;
+	}
+	&--buy {
+		background-color: $buyBackground;
+	}
+	&--home {
+		width: fit-content;
+	}
+	&--size-big {
+		font-size: 1.8rem;
+	}
+}
+
+.spinner {
+	width: 100%;
+	animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
