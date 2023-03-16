@@ -22,6 +22,9 @@ a {
 	text-decoration: none;
 }
 
+ul li {
+	list-style: none;
+}
 .wrapper {
 	margin: 0 auto;
 	padding: 0 30px;
@@ -32,4 +35,33 @@ a {
 	color: crimson;
 	font-size: 1.2rem;
 	margin: 10px 0;
+}
+
+.ic {
+	cursor: pointer;
+}
+
+// margins
+.m-t {
+	&--10 {
+		margin-top: 10px;
+	}
+	&--20 {
+		margin-top: 20px;
+	}
+}
+.m-b {
+	&--10 {
+		margin-bottom: 10px;
+	}
+	&--20 {
+		margin-bottom: 20px;
+	}
+}
+
+// padding
+.p {
+	&--70 {
+		padding: 70px 0;
+	}
 }
