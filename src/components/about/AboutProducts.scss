@@ -1,4 +1,5 @@
 @import '../../variables.scss';
+@import '../../mixins.scss';
 
 $about-products-font-weight-main-text: 500;
 $about-products-font-weight-paragraph: 200;
@@ -7,47 +8,44 @@ $about-products-line-height-paragraph: 3rem;
 $about-products-btn-bg: #1067a3;
 $about-products-btn-text-color: #fff;
 
-@mixin button-style {
-	padding: 15px;
-	color: $about-products-btn-text-color;
-	font-size: 1.5rem;
-	background-color: $about-products-btn-bg;
-	border: none;
-	cursor: pointer;
-	margin: 20px 20px 40px 10px;
-}
-.section-about-products {
-	padding: 100px 0;
+.about-container {
+	padding: 70px 0;
 	background-color: $section-about-products;
-	text-align: center;
-
-	.about-products-container {
+	.about {
 		display: flex;
 		flex-direction: column;
-		.about-products-infos {
-			.about-products-main-text {
+
+		&__infos {
+			&__main {
 				color: $text-main;
 				font-weight: $about-products-font-weight-main-text;
 				margin-bottom: 15px;
+				@include bp(desktop) {
+					font-size: 4rem;
+				}
 			}
-			.about-products-paragraph {
+			&__description {
 				color: $text-paragraph;
 				font-weight: $about-products-font-weight-paragraph;
 				font-size: $about-products-font-size-paragraph;
 				line-height: $about-products-line-height-paragraph;
-				max-width: 400px;
-				margin: 0 auto;
-			}
-
-			.about-products-buttons {
-				.btn-view-items,
-				.btn-read-more {
-					@include button-style();
+				@include bp(desktop) {
+					font-size: 1.8rem;
 				}
 			}
+			@include bp(desktop) {
+				margin-left: 30px;
+			}
 		}
-		.about-products-image-container {
-			height: 100%;
+		&__image {
+			margin: auto;
+			width: 400px;
+		}
+
+		@include bp(desktop) {
+			flex-direction: row-reverse;
+			justify-content: space-between;
+			align-items: center;
 		}
 	}
 }
