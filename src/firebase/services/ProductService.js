@@ -7,12 +7,13 @@ import {
 	collection,
 	getDocs,
 	deleteDoc,
-	getDoc
+	getDoc,
 } from 'firebase/firestore';
 
 export const addProduct = async (product) => {
-	const { name, price, image, quantity, description } = product;
+	const { name, price, image, quantity, description, categoryId } = product;
 
+	console.log(categoryId);
 	try {
 		// dodawanie produktu do bazy danych Firestore
 		const docRef = await addDoc(collection(db, 'products'), {
@@ -21,6 +22,7 @@ export const addProduct = async (product) => {
 			quantity: quantity,
 			imageURL: '',
 			description: description,
+			categoryId: categoryId,
 		});
 		const productId = docRef.id;
 
@@ -46,6 +48,7 @@ export const addProduct = async (product) => {
 				quantity: quantity,
 				imageURL: imageURL || '',
 				description: description,
+				categoryId: categoryId,
 			};
 		}
 	} catch (err) {
