@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Input from '../../components/forms/input/Input';
-import SpinningLoadingButton from '../../components/ui/LoadingButton/SpinningLoadingButton';
+import SpinningLoadingButton from '../../components/ui/buttons/LoadingButton/SpinningLoadingButton';
 import { validateEmail } from '../../helpers/validation';
 import { sendPasswordReset } from '../../firebase/utils';
 import { useNavigate } from 'react-router-dom';

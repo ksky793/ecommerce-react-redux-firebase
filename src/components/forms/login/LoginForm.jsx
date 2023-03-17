@@ -13,7 +13,7 @@ import '../Forms.scss';
 // assets
 import googleLogo from '../../../assets/svgs/googleLogo.svg';
 // components
-import SpinningLoadingButton from '../../ui/LoadingButton/SpinningLoadingButton';
+import SpinningLoadingButton from '../../ui/buttons/LoadingButton/SpinningLoadingButton';
 import Input from '../input/Input';
 import AccountQuestion from '../accountQuestion/AccountQuestion';
 

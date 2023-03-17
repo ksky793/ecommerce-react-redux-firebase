@@ -1,0 +1,15 @@
+@import '../../mixins.scss';
+.admin-page {
+	.admin {
+		&__buttons {
+			display: flex;
+			flex-direction: column;
+			text-align: center;
+
+			@include bp(tablet) {
+				flex-direction: row;
+				justify-content: space-between;
+			}
+		}
+	}
+}

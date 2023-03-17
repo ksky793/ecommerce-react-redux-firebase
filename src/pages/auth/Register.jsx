@@ -6,7 +6,7 @@ import { signUpUser } from '../../redux/features/auth/authSlice';
 
 // components
 import Input from '../../components/forms/input/Input';
-import SpinningLoadingButton from '../../components/ui/LoadingButton/SpinningLoadingButton';
+import SpinningLoadingButton from '../../components/ui/buttons/LoadingButton/SpinningLoadingButton';
 import AccountQuestion from '../../components/forms/accountQuestion/AccountQuestion';
 
 const RegisterPage = () => {
@@ -59,23 +59,23 @@ const RegisterPage = () => {
 		});
 	};
 
-	const handleSubmit = async (e) => {
+	const handleSubmit = (e) => {
 		e.preventDefault();
 		const isValid = isFormValid(form);
 		if (isValid) {
 			const fullName = `${form.firstName.value} ${form.lastName.value}`;
 
-			await dispatch(
+			dispatch(
 				signUpUser({
 					fullName: fullName,
 					email: form.email.value,
 					password: form.password.value,
 				})
 			);
-			if (error === false) navigate('/login');
 		}
 	};
 
+	if (error === false) navigate('/login');
 	if (isLoggedIn) return <Navigate to='/' />;
 	return (
 		<div className='form-container wrapper'>
