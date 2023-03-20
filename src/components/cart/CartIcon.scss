@@ -1,0 +1,21 @@
+.cart-icon-container {
+	position: relative;
+	&__circle {
+		width: 15px;
+		height: 15px;
+		border-radius: 15px;
+		background-color: rgb(108, 133, 233);
+		position: absolute;
+		left: 70%;
+		top: 90%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		transform: translate(-50%, -50%);
+		&__quantity {
+			font-size: 1.1rem;
+			color: white;
+			font-weight: 400;
+		}
+	}
+}
