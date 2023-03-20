@@ -1,13 +1,10 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-	faFacebookF,
-	faInstagram,
-	faTwitter,
-} from '@fortawesome/free-brands-svg-icons';
-
 import './Footer.scss';
 import './media-queries.scss';
-
+import {
+	AiOutlineInstagram,
+	AiFillFacebook,
+	AiOutlineTwitter,
+} from 'react-icons/ai';
 const Footer = () => {
 	return (
 		<footer className='footer'>
@@ -38,13 +35,13 @@ const Footer = () => {
 				<div className='footer-bottom'>
 					<div className='footer-icons'>
 						<div className='footer-icon'>
-							<FontAwesomeIcon icon={faFacebookF} />
+							<AiOutlineInstagram />
 						</div>
 						<div className='footer-icon'>
-							<FontAwesomeIcon icon={faTwitter} />
+							<AiFillFacebook />
 						</div>
 						<div className='footer-icon'>
-							<FontAwesomeIcon icon={faInstagram} />
+							<AiOutlineTwitter />
 						</div>
 					</div>
 					<p>Copyright. All rights reserved</p>
