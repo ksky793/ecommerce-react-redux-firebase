@@ -1,6 +1,6 @@
 import { AiOutlineClose } from 'react-icons/ai';
 
-const Table = ({ categories, products, handleRemoveClick }) => {
+const Table = ({ categories, products, onClick }) => {
 	return (
 		<div className='table-container'>
 			<table className='products'>
@@ -35,7 +35,7 @@ const Table = ({ categories, products, handleRemoveClick }) => {
 								<td>
 									<AiOutlineClose
 										className='ic'
-										onClick={() => handleRemoveClick(product.id)}
+										onClick={() => onClick(product.id)}
 									/>
 								</td>
 							</tr>

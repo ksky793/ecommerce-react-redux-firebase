@@ -9,7 +9,7 @@ import Navbar from './components/Navbar/Navbar';
 
 // hoc
 import WithAdminAuth from './hoc/WithAdminAuth';
-
+import AuthenticatedRoute from './components/AuthenticatedRoute/AuthenticatedRoute';
 // pages
 import HomePage from './pages/home/Home';
 import RegisterPage from './pages/auth/Register';
@@ -38,7 +38,14 @@ function App() {
 				<Route path='/registration' element={<RegisterPage />} />
 				<Route path='/password-reset' element={<ResetPasswordPage />} />
 				<Route path='/login' element={<LoginPage />} />
-				<Route path='/cart' element={<Cart />} />
+				<Route
+					path='/cart'
+					element={
+						<AuthenticatedRoute>
+							<Cart />
+						</AuthenticatedRoute>
+					}
+				/>
 
 				{/* admin */}
 				<Route
