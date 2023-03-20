@@ -1,4 +1,43 @@
+@import '../../mixins.scss';
+
+.ic-menu {
+	@include bp(desktop) {
+		display: none;
+	}
+}
 .navbar {
-	height: 8rem;
-	// background-color: rgb(31, 22, 52);
+	height: 70px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+
+	&__logo {
+		font-weight: 700;
+	}
+	&__links {
+		display: none;
+		&__link {
+			list-style: none;
+			margin: 0 10px;
+		}
+
+		@include bp(desktop) {
+			display: flex;
+		}
+	}
+	&__icons {
+		display: flex;
+		align-items: center;
+		&__icon {
+			margin: 0 10px;
+
+			&--size-big {
+				font-size: 30px;
+			}
+			&--is-hide {
+				display: none;
+			}
+		}
+	}
 }
