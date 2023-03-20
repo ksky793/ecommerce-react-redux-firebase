@@ -51,4 +51,21 @@ $file-input-height: 50px;
 		max-width: 100%;
 		max-height: 100px;
 	}
+	.form-select {
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		appearance: none;
+		padding: 15px;
+		width: 100%;
+		border-radius: 0;
+		border: 1px solid $input-border-color;
+
+		&:focus {
+			outline: none;
+		}
+
+		option {
+			background-color: white;
+		}
+	}
 }

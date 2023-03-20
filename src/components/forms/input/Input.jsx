@@ -19,14 +19,18 @@ const InputSelect = (props) => {
 	return (
 		<div className='form-group'>
 			<label>{props.label}</label>
+
 			<select
 				className={`form-select ${props.showError && 'is-invalid'}`}
 				value={props.name}
 				onChange={props.onChange}
 			>
+				<option value='' disabled hidden>
+					Select an option
+				</option>
 				{props.options.map((option) => (
-					<option value={option.value} key={option.value}>
-						{option.label}
+					<option value={option.id} key={option.id}>
+						{option.category}
 					</option>
 				))}
 			</select>
