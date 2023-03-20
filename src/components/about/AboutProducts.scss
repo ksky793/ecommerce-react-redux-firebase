@@ -39,7 +39,8 @@ $about-products-btn-text-color: #fff;
 		}
 		&__image {
 			margin: auto;
-			width: 400px;
+			width: 100%;
+			max-width: 400px;
 		}
 
 		@include bp(desktop) {
