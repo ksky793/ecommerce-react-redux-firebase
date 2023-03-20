@@ -1,45 +1,57 @@
 import { Route, Routes } from 'react-router-dom';
 import './default.scss';
-// import bucket from './assets/svgs/bucket.svg';
 
 // components
-import Header from './components/Header/Header';
+import Header from './components/header/Header';
 import Footer from './components/Footer/Footer';
 import Layout from './layouts/Layout';
 import Navbar from './components/Navbar/Navbar';
 
+// hoc
+import WithAdminAuth from './hoc/WithAdminAuth';
+
 // pages
-import HomePage from './pages/home/HomePage';
-import RegisterPage from './pages/auth/RegisterPage';
-import LoginPage from './pages/auth/LoginPage';
-import ProductPage from './pages/product/ProductPage';
-import { useEffect, useState } from 'react';
-import { auth } from './firebase/utils';
-import ResetPasswordPage from './pages/auth/ResetPasswordPage';
+import HomePage from './pages/home/Home';
+import RegisterPage from './pages/auth/Register';
+import LoginPage from './pages/auth/Login';
+import ProductPage from './pages/products/product/ProductPage';
+import ResetPasswordPage from './pages/auth/ResetPassword';
+import Admin from './pages/admin/Admin';
+import AddProduct from './pages/admin/addProduct/AddProduct';
+import Products from './pages/products/Products';
+import AdminProducts from './pages/admin/products/Products';
+import Cart from './pages/cart/Cart';
+
 function App() {
-	const [user, setUser] = useState(null);
-
-	useEffect(() => {
-		auth.onAuthStateChanged((usr) => {
-			if (usr) setUser(usr.email);
-			else setUser(null);
-		});
-	}, []);
-
 	const header = <Header />;
-	const navbar = <Navbar user={user} />;
+	const navbar = <Navbar />;
 	const footer = <Footer />;
 	const content = (
 		<>
 			<Routes>
-				<Route path='/' element={<HomePage user={user} />} />
+				<Route path='/' element={<HomePage />} />
+				<Route path='/products' element={<Products />} />
+				<Route path='/products/:productId' element={<ProductPage />} />
+				<Route path='*' element={<>404 PAGE NOT FOUND</>} />
+
+				{/* auth */}
 				<Route path='/registration' element={<RegisterPage />} />
-				<Route path='/login' element={<LoginPage user={user} />} />
-				<Route
-					path='/products/:productId/product-details'
-					element={<ProductPage />}
-				/>
 				<Route path='/password-reset' element={<ResetPasswordPage />} />
+				<Route path='/login' element={<LoginPage />} />
+				<Route path='/cart' element={<Cart />} />
+
+				{/* admin */}
+				<Route
+					path='/admin'
+					element={
+						<WithAdminAuth>
+							<Admin />
+						</WithAdminAuth>
+					}
+				>
+					<Route path='products/add-product' element={<AddProduct />} />
+					<Route path='products' element={<AdminProducts />} />
+				</Route>
 			</Routes>
 		</>
 	);

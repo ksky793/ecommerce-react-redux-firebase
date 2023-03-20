@@ -11,6 +11,7 @@ import {
 } from '../../../redux/features/products/productSlice';
 // styles
 import './Products.scss';
+import Table from '../../../components/table/Table';
 
 const Products = () => {
 	const dispatch = useDispatch();
@@ -31,46 +32,11 @@ const Products = () => {
 			{loading ? (
 				<FaSpinner className='spinner' />
 			) : (
-				<div className='table-container'>
-					<table className='products'>
-						<thead>
-							<tr>
-								<th>#</th>
-								<th></th>
-								<th>Product</th>
-								<th>Category</th>
-								<th>Price</th>
-								<th>Quantity</th>
-								<th></th>
-							</tr>
-						</thead>
-						<tbody>
-							{products.map((product, index) => {
-								const category = categories.find(
-									(cat) => cat.id === product.categoryId
-								);
-								return (
-									<tr key={product.id}>
-										<td>{++index}</td>
-										<td>
-											<img src={product.imageURL} alt={product.name} />
-										</td>
-										<td>{product.name}</td>
-										<td>{category ? category.category : 'Unknown'}</td>
-										<td>${product.price}</td>
-										<td>{product.quantity}</td>
-										<td>
-											<AiOutlineClose
-												className='ic'
-												onClick={() => handleRemoveClick(product.id)}
-											/>
-										</td>
-									</tr>
-								);
-							})}
-						</tbody>
-					</table>
-				</div>
+				<Table
+					products={products}
+					categories={categories}
+					handleRemoveClick={handleRemoveClick}
+				/>
 			)}
 		</>
 	);

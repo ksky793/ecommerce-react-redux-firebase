@@ -3,12 +3,12 @@ $adminBtnBackground: #144f7b;
 // add to cart button styles
 $addToCartBackgroundColor: #ffffff;
 $addToCartTextColor: #1067a3;
-$addToCartBorder: 2px solid #1067a3;
+$addToCartBorder: 1px solid #1067a3;
 
 $buyBackground: #1067a3;
 .btn {
 	border: none;
-	padding: 10px;
+	padding: 10px 20px;
 	cursor: pointer;
 	color: white;
 	background-color: #1067a3;
@@ -20,9 +20,14 @@ $buyBackground: #1067a3;
 		background-color: $addToCartBackgroundColor;
 		color: $addToCartTextColor;
 		border: $addToCartBorder;
+		margin-right: 30px;
+		font-size: 2rem;
+		width: 100%;
 	}
 	&--buy {
 		background-color: $buyBackground;
+		font-size: 2rem;
+		width: 100%;
 	}
 	&--home {
 		width: fit-content;
