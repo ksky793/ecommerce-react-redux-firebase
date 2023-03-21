@@ -21,3 +21,20 @@ SASS, Firebase V9, React, Redux Toolkit, BEM
   <li>Aktualnie robione: kupowanie produktów - użytkownicy mogą dokonywać zakupów produktów z aplikacji.</li>
 </ul>
 
+## Zrzuty Ekranu
+### Strona Główna
+![Zrzut ekranu 2023-03-21 o 05 13 39](https://user-images.githubusercontent.com/64898781/226516648-6f04f06c-44fd-4981-b7b7-7efc640b87c9.png)
+### Strona z produktami
+![Zrzut ekranu 2023-03-21 o 05 23 51](https://user-images.githubusercontent.com/64898781/226516822-f0db77ab-7efb-4b15-915b-c334f36c7a56.png)
+### Wyświetlanie produktu o danym ID
+![Zrzut ekranu 2023-03-21 o 05 24 52](https://user-images.githubusercontent.com/64898781/226516933-71f8d44f-909a-46a4-8f33-74405035b0dc.png)
+### Widok produktów dodanych do koszyka
+![Zrzut ekranu 2023-03-21 o 05 25 42](https://user-images.githubusercontent.com/64898781/226517000-66c148ed-c34f-4ed0-af23-028d08a2ee8b.png)
+### Panel Logowania
+![Zrzut ekranu 2023-03-21 o 05 26 39](https://user-images.githubusercontent.com/64898781/226517111-de644a7f-430d-48d0-bca1-2e6ffd3c42d4.png)
+### Panel Rejestracji 
+![Zrzut ekranu 2023-03-21 o 05 27 23](https://user-images.githubusercontent.com/64898781/226517193-d5864728-d968-4983-b293-abfaf2f2c025.png)
+### Panel Admina - wyświetlanie produktów z możliwością usunięcia ich z bazy
+![Zrzut ekranu 2023-03-21 o 05 27 49](https://user-images.githubusercontent.com/64898781/226517231-ca02d32f-8e44-48e5-b348-77af5fa64f8f.png)
+### Panel Admina - dodawanie produktu do bazy
+![Zrzut ekranu 2023-03-21 o 05 28 50](https://user-images.githubusercontent.com/64898781/226517338-40597981-4563-49d0-8cfd-a98d8a88b8b2.png)
